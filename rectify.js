@@ -5,7 +5,6 @@ process.stdout.write('\x1Bc');
 
 import fs from 'fs';
 import path from 'path';
-import ora from 'ora';
 import { google } from 'googleapis';
 import { fileURLToPath } from 'url';
 import chalk from 'chalk';
@@ -17,7 +16,7 @@ import gradient from 'gradient-string';
 const limit = pLimit(4);
 
 // Generate ASCII text
-const asciiText = figlet.textSync('RECTIFY', { horizontalLayout: 'full' });
+const asciiText = figlet.textSync('RECTIFIER', { horizontalLayout: 'full' });
 
 // Apply color and bold styling
 console.log(gradient.fruit(asciiText));
@@ -28,7 +27,7 @@ const __dirname = path.dirname(__filename);
 const drive = google.drive({
   version: 'v3',
   auth: new google.auth.GoogleAuth({
-    keyFile: path.join(__dirname, 'credentials.json'),
+    keyFile: path.join(__dirname, 'rectifyCredentials.json'),
     scopes: ['https://www.googleapis.com/auth/drive'],
   }),
 });
@@ -121,8 +120,8 @@ async function main() {
 
   try {
     await uploadDirectory(answers.localPath, answers.googleDriveFolderId);
-    console.log(chalk.greenBright('All files [RECTIFIED, GAMED, UPLOADED].\n'));
-    console.log(chalk.greenBright('END OF LINE.'));
+    console.log(chalk.greenBright('All files [RECTIFIED, GAMED, UPLOADED].'));
+    console.log(chalk.greenBright('END OF LINE⎕'));
 
   } catch (error) {
     console.log(chalk.redBright(`Upload process failed: ${error.message}`));
