@@ -3,3 +3,4 @@ node_modules
 # .gitignore
 rectifyCredentials.json
 .env
+.DS_Store
